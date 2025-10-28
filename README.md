@@ -14,7 +14,7 @@ DeFi Aggregator 是一个功能完整的多链DeFi收益聚合器，集成了收
 
 🤖 自动化管理: 再平衡机器人和收益收割
 
-项目架构
+#### 项目架构
 
 ```tex
 contracts/
@@ -577,6 +577,7 @@ function _authorizeUpgrade(address newImplementation)
 4. **后续优化**：数学精度和重入保护（中危）
 
 这些修复对于项目安全至关重要，特别是在处理用户资金和合约升级时。
+
 
 
 
