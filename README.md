@@ -845,6 +845,4 @@ defi-aggregator/
 
 Made with ❤️ by DeFi Aggregator Team
 
-🚀 Generated with [Claude Code](https://claude.com/claude-code)
-
 </div>
