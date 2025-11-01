@@ -25,7 +25,7 @@ async function main() {
         throw new Error("❌ 请先部署核心系统 (运行 01-deploy-core.ts)");
     }
 
-    const coreDeployment = JSON.parse(readFileSync(coreDeploymentPath, "utf-8"));
+    const _coreDeployment = JSON.parse(readFileSync(coreDeploymentPath, "utf-8"));
     console.log("✅ 已加载核心系统部署信息\n");
 
     // ==========================================

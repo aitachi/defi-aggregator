@@ -14,16 +14,16 @@ contract MockAavePool {
         return assetPrices[asset];
     }
 
-    function supply(address asset, uint256 amount, address onBehalfOf, uint16 referralCode) external {
+    function supply(address asset, uint256 amount, address /* onBehalfOf */, uint16 /* referralCode */) external {
         IERC20(asset).transferFrom(msg.sender, address(this), amount);
     }
 
     function borrow(
         address asset,
         uint256 amount,
-        uint256 interestRateMode,
-        uint16 referralCode,
-        address onBehalfOf
+        uint256 /* interestRateMode */,
+        uint16 /* referralCode */,
+        address /* onBehalfOf */
     ) external {
         IERC20(asset).transfer(msg.sender, amount);
     }
@@ -31,8 +31,8 @@ contract MockAavePool {
     function repay(
         address asset,
         uint256 amount,
-        uint256 rateMode,
-        address onBehalfOf
+        uint256 /* rateMode */,
+        address /* onBehalfOf */
     ) external returns (uint256) {
         IERC20(asset).transferFrom(msg.sender, address(this), amount);
         return amount;

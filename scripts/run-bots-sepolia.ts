@@ -9,7 +9,7 @@ async function main() {
     const deploymentPath = join(__dirname, "../deployments/sepolia-latest.json");
     const deployment = JSON.parse(readFileSync(deploymentPath, "utf-8"));
 
-    const vault = await ethers.getContractAt("Vault", deployment.contracts.Vault);
+    const _vault = await ethers.getContractAt("Vault", deployment.contracts.Vault);
     const leverageHelper = await ethers.getContractAt(
         "LeverageHelper",
         deployment.contracts.LeverageHelper
@@ -32,6 +32,7 @@ async function main() {
 
     let iteration = 0;
 
+    // eslint-disable-next-line no-constant-condition
     while (true) {
         try {
             iteration++;

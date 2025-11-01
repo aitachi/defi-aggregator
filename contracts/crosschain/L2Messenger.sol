@@ -106,7 +106,7 @@ contract L2Messenger is Ownable {
     function _sendToArbitrum(
         address target,
         bytes memory data,
-        uint256 gasLimit
+        uint256 /* gasLimit */
     ) internal {
         // Arbitrum使用ArbSys发送L2->L1消息
         IArbSys(ARB_SYS).sendTxToL1{value: msg.value}(target, data);
@@ -123,7 +123,7 @@ contract L2Messenger is Ownable {
             }(target, data, uint32(gasLimit));
     }
 
-    function _isBridgeContract(address addr) internal view returns (bool) {
+    function _isBridgeContract(address addr) internal pure returns (bool) {
         return addr == ARB_SYS || addr == L2_CROSS_DOMAIN_MESSENGER;
     }
 

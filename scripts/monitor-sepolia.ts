@@ -32,7 +32,7 @@ async function main() {
 
     // 连接合约
     const vault = await ethers.getContractAt("Vault", deployment.contracts.Vault);
-    const strategyManager = await ethers.getContractAt(
+    const _strategyManager = await ethers.getContractAt(
         "StrategyManager",
         deployment.contracts.StrategyManager
     );
@@ -50,6 +50,7 @@ async function main() {
     );
 
     // 监控循环
+    // eslint-disable-next-line no-constant-condition
     while (true) {
         try {
             const monitorData: MonitorData = {
@@ -191,6 +192,7 @@ async function main() {
 
             // 保存监控数据
             const monitorFile = join(__dirname, "../logs/monitor.jsonl");
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             const fs = require("fs");
             fs.appendFileSync(monitorFile, JSON.stringify(monitorData) + "\n");
 

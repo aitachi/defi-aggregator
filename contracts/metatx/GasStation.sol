@@ -121,9 +121,9 @@ contract GasStation is Ownable {
         payable(msg.sender).transfer(amount);
     }
 
-    function _findActiveSponsor(uint256 amount)
+    function _findActiveSponsor(uint256 /* amount */)
     internal
-    view
+    pure
     returns (address)
     {
         // 简单实现 - 遍历找到可用赞助商

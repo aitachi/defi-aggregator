@@ -54,7 +54,7 @@ contract LiquidationBot is Ownable {
 
     function findLiquidatablePositions()
     external
-    view
+    pure
     returns (address[] memory users)
     {
         // 简化实现：返回空数组

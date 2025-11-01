@@ -1,8 +1,6 @@
 import { expect } from "chai";
 import { ethers, upgrades } from "hardhat";
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
-import { Vault, MockERC20, FeeCollector } from "../../typechain-types";
-import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
 
 describe("Vault", function () {
     async function deployVaultFixture() {
@@ -207,7 +205,7 @@ describe("Vault", function () {
         });
 
         it("收益后份额价格应该增加", async function () {
-            const { vault, usdc, user1, owner } = await loadFixture(deployVaultFixture);
+            const { vault, usdc, user1 } = await loadFixture(deployVaultFixture);
 
             const depositAmount = ethers.parseUnits("1000", 6);
             await usdc.connect(user1).approve(await vault.getAddress(), depositAmount);
@@ -318,7 +316,7 @@ describe("Vault", function () {
 
     describe("Upgradeability", function () {
         it("应该能够升级合约", async function () {
-            const { vault, owner } = await loadFixture(deployVaultFixture);
+            const { vault } = await loadFixture(deployVaultFixture);
 
             const VaultV2 = await ethers.getContractFactory("Vault");
             const upgraded = await upgrades.upgradeProxy(
@@ -330,7 +328,7 @@ describe("Vault", function () {
         });
 
         it("升级后应该保留状态", async function () {
-            const { vault, usdc, user1, owner } = await loadFixture(deployVaultFixture);
+            const { vault, usdc, user1 } = await loadFixture(deployVaultFixture);
 
             const depositAmount = ethers.parseUnits("1000", 6);
             await usdc.connect(user1).approve(await vault.getAddress(), depositAmount);
@@ -360,7 +358,7 @@ describe("Vault", function () {
 
     describe("Fees", function () {
         it("应该正确收取绩效费", async function () {
-            const { vault, usdc, user1, treasury } = await loadFixture(deployVaultFixture);
+            const { vault, usdc, user1 } = await loadFixture(deployVaultFixture);
 
             const depositAmount = ethers.parseUnits("1000", 6);
             await usdc.connect(user1).approve(await vault.getAddress(), depositAmount);
@@ -373,7 +371,7 @@ describe("Vault", function () {
         });
 
         it("费用应该不超过预期比例", async function () {
-            const { vault, usdc, user1, treasury } = await loadFixture(deployVaultFixture);
+            const { vault, usdc, user1 } = await loadFixture(deployVaultFixture);
 
             const depositAmount = ethers.parseUnits("1000", 6);
             await usdc.connect(user1).approve(await vault.getAddress(), depositAmount);

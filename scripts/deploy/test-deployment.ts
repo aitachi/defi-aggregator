@@ -43,7 +43,7 @@ async function main() {
     console.log("🧑‍🔬 测试账户:", tester.address);
     console.log("💰 账户余额:", ethers.formatEther(balance), "ETH\n");
 
-    let testResults = {
+    const testResults = {
         passed: 0,
         failed: 0,
         skipped: 0,

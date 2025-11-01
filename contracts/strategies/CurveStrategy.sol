@@ -59,7 +59,7 @@ contract CurveStrategy is BaseStrategy {
         // 1. 添加流动性到Curve
         want.approve(address(curvePool), amount);
         uint256[2] memory amounts;
-        amounts[0] = amount; // 假设want是第一个代�?
+        amounts[0] = amount; // 假设want是第一个代�?
         uint256 lpReceived = curvePool.add_liquidity(amounts, 0);
 
         // 2. 质押LP到Convex
@@ -75,7 +75,7 @@ contract CurveStrategy is BaseStrategy {
         // 1. 从Convex提取LP
         convexBooster.withdraw(poolId, lpToWithdraw);
 
-        // 2. 从Curve移除流动�?
+        // 2. 从Curve移除流动�?
         IERC20(lpToken).approve(address(curvePool), lpToWithdraw);
         return curvePool.remove_liquidity_one_coin(lpToWithdraw, 0, 0);
     }
@@ -89,7 +89,7 @@ contract CurveStrategy is BaseStrategy {
 
         uint256 totalProfit = 0;
 
-        // 将CRV换成want (简�?- 实际需要通过DEX)
+        // 将CRV换成want (简�?- 实际需要通过DEX)
         if (crvBalance > 0) {
             totalProfit += crvBalance;
         }
@@ -104,11 +104,11 @@ contract CurveStrategy is BaseStrategy {
 
     function _totalAssets() internal view override returns (uint256) {
         uint256 lpBalance = convexRewards.balanceOf(address(this));
-        // 简�?- 实际需要计算LP价�?
+        // 简�?- 实际需要计算LP价�?
         return lpBalance;
     }
 
-    function estimatedAPY() external view override returns (uint256) {
+    function estimatedAPY() external pure override returns (uint256) {
         // Curve基础APY + Convex奖励APY
         return 500; // 5%
     }

@@ -17,7 +17,7 @@ describe("Sepolia Integration Tests", function () {
     this.timeout(300000); // 5分钟
 
     let deployment: any;
-    let contracts: any = {};
+    const contracts: any = {};
     let signer: any;
 
     before(async function () {

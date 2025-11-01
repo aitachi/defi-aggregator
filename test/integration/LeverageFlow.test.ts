@@ -224,11 +224,11 @@ describe("Leverage Flow Integration", function () {
                 0
             );
 
-            const leverageBefore = await leverageHelper.getCurrentLeverage(user1.address, 0);
+            const _leverageBefore = await leverageHelper.getCurrentLeverage(user1.address, 0);
 
             await aavePool.setAssetPrice(await weth.getAddress(), ethers.parseUnits("3000", 8));
 
-            const leverageAfterPriceChange = await leverageHelper.getCurrentLeverage(user1.address, 0);
+            const _leverageAfterPriceChange = await leverageHelper.getCurrentLeverage(user1.address, 0);
 
             await rebalanceBot.connect(keeper).rebalance(user1.address, 0);
 

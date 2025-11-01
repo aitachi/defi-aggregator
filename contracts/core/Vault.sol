@@ -323,9 +323,8 @@ contract Vault is
     /**
      * @notice 获取用户在特定代币上的余额
      * @param user 用户地址
-     * @param token 代币地址
      */
-    function getTokenBalance(address user, address token)
+    function getTokenBalance(address user, address /* token */)
         external
         view
         returns (uint256)

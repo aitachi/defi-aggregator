@@ -261,7 +261,7 @@ contract LeverageEngine is ReentrancyGuard, Ownable {
 
     function _swapTokens(
         address tokenIn,
-        address tokenOut,
+        address /* tokenOut */,
         uint256 amountIn
     ) internal returns (uint256 amountOut) {
         // 简单实现 - 实际应该调用Uniswap

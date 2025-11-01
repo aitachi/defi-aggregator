@@ -84,8 +84,7 @@ contract MockCompoundStrategy {
         // 应用滑点
         uint256 amountAfterSlippage = actualAmount - (actualAmount * slippageBps / 10000);
 
-        // 考虑杠杆效果
-        uint256 deleveragedAmount = (actualAmount * 10000) / leverageMultiplier;
+        // 考虑杠杆效果 - calculation kept for potential future use
         totalDeposits -= actualAmount;
 
         IERC20(want).transfer(msg.sender, amountAfterSlippage);

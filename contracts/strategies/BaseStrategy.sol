@@ -14,7 +14,7 @@ abstract contract BaseStrategy is OwnableUpgradeable, PausableUpgradeable, UUPSU
     uint256 public lastHarvest;
 
     uint256 public constant FEE_DENOMINATOR = 10000;
-    uint256 public performanceFee = 1000;
+    uint256 public performanceFee;
 
     event Deposited(uint256 amount);
     event Withdrawn(uint256 amount);
@@ -35,6 +35,7 @@ abstract contract BaseStrategy is OwnableUpgradeable, PausableUpgradeable, UUPSU
 
         vault = _vault;
         want = IERC20(_want);
+        performanceFee = 1000; // 10% default performance fee
     }
 
     function deposit(uint256 amount)

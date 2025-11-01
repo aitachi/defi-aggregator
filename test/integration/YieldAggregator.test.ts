@@ -1,14 +1,6 @@
 import { expect } from "chai";
 import { ethers, upgrades } from "hardhat";
 import { loadFixture, time } from "@nomicfoundation/hardhat-network-helpers";
-import {
-    Vault,
-    MockERC20,
-    MockAaveStrategy,
-    MockCurveStrategy,
-    StrategyManager,
-    FeeCollector
-} from "../../typechain-types";
 
 describe("YieldAggregator Integration", function () {
     async function deployFullSystemFixture() {
@@ -166,7 +158,7 @@ describe("YieldAggregator Integration", function () {
 
     describe("Strategy Migration", function () {
         it("应该能够迁移资金到新策略", async function () {
-            const { vault, usdc, strategyManager, aaveStrategy, user1, owner } =
+            const { vault, usdc, strategyManager, aaveStrategy, user1 } =
                 await loadFixture(deployFullSystemFixture);
 
             const depositAmount = ethers.parseUnits("10000", 6);
@@ -201,7 +193,7 @@ describe("YieldAggregator Integration", function () {
         });
 
         it("策略失败时应该能够紧急撤资", async function () {
-            const { vault, strategyManager, aaveStrategy, user1, usdc } =
+            const { vault, aaveStrategy, user1, usdc } =
                 await loadFixture(deployFullSystemFixture);
 
             const depositAmount = ethers.parseUnits("10000", 6);
@@ -290,7 +282,7 @@ describe("YieldAggregator Integration", function () {
 
     describe("Edge Cases & Stress Tests", function () {
         it("应该处理策略损失", async function () {
-            const { vault, usdc, aaveStrategy, user1 } =
+            const { vault, usdc, user1 } =
                 await loadFixture(deployFullSystemFixture);
 
             const depositAmount = ethers.parseUnits("10000", 6);
@@ -358,7 +350,7 @@ describe("YieldAggregator Integration", function () {
         });
 
         it("应该在低流动性情况下延迟提款", async function () {
-            const { vault, usdc, strategyManager, aaveStrategy, user1 } =
+            const { vault, usdc, user1 } =
                 await loadFixture(deployFullSystemFixture);
 
             const depositAmount = ethers.parseUnits("10000", 6);
@@ -376,7 +368,7 @@ describe("YieldAggregator Integration", function () {
 
     describe("Multi-Strategy Coordination", function () {
         it("应该根据APY自动调整策略分配", async function () {
-            const { vault, strategyManager, aaveStrategy, curveStrategy, user1, usdc } =
+            const { vault, aaveStrategy, curveStrategy, user1, usdc } =
                 await loadFixture(deployFullSystemFixture);
 
             const depositAmount = ethers.parseUnits("10000", 6);
@@ -399,7 +391,7 @@ describe("YieldAggregator Integration", function () {
         });
 
         it("应该限制单一策略的最大分配", async function () {
-            const { vault, strategyManager, aaveStrategy, user1, usdc } =
+            const { vault, aaveStrategy, user1, usdc } =
                 await loadFixture(deployFullSystemFixture);
 
             const depositAmount = ethers.parseUnits("100000", 6);

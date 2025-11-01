@@ -247,9 +247,9 @@ contract LeverageHelper is Ownable {
 
         // ✅ 根据价格动态计算健康因子
         uint256 currentPrice = IPriceOracle(priceOracle).getAssetPrice(position.collateralAsset);
-        uint256 collateralValue = (position.collateralAmount * currentPrice) / 1e18;
+        // Unused variable removed - collateralValue not needed for simplified calculation
 
-        // 简化计算：如果价格大幅下跌，健康因子降低
+        // 简化计算：如果价格大幅下跌,健康因子降低
         if (currentPrice < 1600e8) {
             return 8e17; // 0.8 - 不健康
         }

@@ -141,7 +141,7 @@ contract PositionManager is Ownable, ReentrancyGuard {
      */
     function getPositionsNeedRebalance()
     external
-    view
+    pure
     returns (uint256[] memory)
     {
         // 简单实现 - 实际应遍历所有头寸

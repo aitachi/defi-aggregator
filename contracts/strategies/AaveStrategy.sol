@@ -35,7 +35,7 @@ contract AaveStrategy is BaseStrategy {
     }
 
     function _deposit(uint256 amount) internal override {
-        // 批准Aave�?
+        // 批准Aave�?
         want.approve(address(aavePool), amount);
 
         // 存入Aave
@@ -67,8 +67,8 @@ contract AaveStrategy is BaseStrategy {
         return aToken.balanceOf(address(this));
     }
 
-    function estimatedAPY() external view override returns (uint256) {
-        // 简化实�?- 实际应从Aave获取当前利率
+    function estimatedAPY() external pure override returns (uint256) {
+        // 简化实现 - 实际应从Aave获取当前利率
         return 300; // 3%
     }
 }
